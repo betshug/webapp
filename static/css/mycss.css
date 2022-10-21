@@ -1,0 +1,22 @@
+/*  Modifiche fatte da me   */
+
+.adestra{
+    position: absolute;
+    right:0px;}
+
+.adestra2{
+    position: absolute;
+    right:120px;}
+
+.centralo{
+    margin-left: 4%;
+    position: relative;
+    bottom: 0px;}
+  
+.footer1{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+
+    text-align: center}    
