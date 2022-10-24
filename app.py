@@ -35,6 +35,11 @@ def index():
     return render_template('homepage.html')
 
 
+@app.route('/paypal')
+def paypal():
+    return redirect("https://paypal.me/marcopruiti?country.x=IT&locale.x=it_IT")
+
+
 @app.route('/signup')
 def signup():
     return render_template('signup.html')
