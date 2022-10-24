@@ -1,7 +1,10 @@
 {% extends 'base.html' %}
-{% block test %}
+{% block base %}
 
-<form class="ui form" action="/add" method="POST">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.css">
+<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.js"></script>
+
+<form class="ui form container" action="/add" method="POST">
     <div class="field">
         <label for="title">To Do Title</label>
         <input type="text" name="title" placeholder="To do...">
@@ -10,7 +13,7 @@
 </form>
 
 {% for todo in todo_list %}
-<div class="ui segment">
+<div class="ui segment container">
     <p class="ui big header">{{todo.id}} | {{todo.title}}</p>
 
     {% if todo.complete == False  %}

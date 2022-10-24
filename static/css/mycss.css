@@ -19,4 +19,11 @@
     bottom: 0;
     width: 100%;
 
-    text-align: center}    
+    text-align: center}  
+
+.footer2 {
+position: fixed;
+min-height: 50px;
+bottom: 0;
+width: 100%;
+border: 1px solid transparent;}    
