@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, send_from_directory
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
@@ -20,8 +20,6 @@ class Users(db.Model):
     email = db.Column(db.String(100))
 
 
-
-
 @app.route('/todo')
 def todo():
     #show all todos
@@ -33,6 +31,11 @@ def todo():
 @app.route('/')
 def index():
     return render_template('homepage.html')
+
+
+@app.route('/db')
+def db():   
+    return send_from_directory('instance/"db.sqlite"')    
 
 
 @app.route('/paypal')
