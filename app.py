@@ -34,7 +34,7 @@ def index():
 
 
 @app.route('/db')
-def db():   
+def database():   
     return send_from_directory('instance/"db.sqlite"')    
 
 
