@@ -35,7 +35,7 @@ def index():
 
 @app.route('/db')
 def database():   
-    return send_from_directory('instance/db.sqlite')    
+    return send_from_directory('instance', 'db.sqlite')    
 
 
 @app.route('/paypal')
