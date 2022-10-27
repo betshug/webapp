@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyApplication</title>
+    <!-- Custom styles for this template -->
+    <link href="{{ url_for('static',filename='css/personal.css') }}" rel="stylesheet">
+</head>
+<body>
+    <nav>
+        <ul class="navbar" id="dropdownClick">
+            <li><a href="/home">home</a></li>
+            <li><a href="/products">products</a></li>
+            <li><a href="/Contact">contact us</a></li>
+            <li class="navbar-right"><a href="/signup">sign up</a></li>
+            <li class="navbar-right"><a href="/signin">sign in</a></li>
+            <li class="dropdownIcon"><a href="javascript:void(0):" onclick="dropdownMenu()">&#9776;</a></li>
+        </ul>
+    </nav> 
+    
+    <script>
+        function dropdownMenu(){
+            var x = document.getElementById("dropdownClick");
+            if (x.className === "navbar"){
+                x.className += " responsive";
+            } else{
+                x.className = "navbar";
+            }
+        }
+    </script>
+
+</body>
+</html>

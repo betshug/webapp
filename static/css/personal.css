@@ -1,0 +1,82 @@
+nav, header, footer {
+    display: block;
+}
+
+body{
+    line-height: 2;
+    margin: 0px;
+}
+
+nav {
+    width: 100%;
+    margin: 0px;
+}
+
+nav ul {
+    overflow: hidden;
+    background: linear-gradient(to right, #fff2cc 30% , #cc0099 50%, #33cc33 70%);
+    margin: 0px;
+    padding: 0px;
+}
+
+ul.navbar li{
+    list-style: none;
+    float: left;
+}        
+
+ul.navbar li.navbar-right{
+    float: right;
+}   
+
+ul.navbar li a{
+    display: block;
+    text-decoration: none;
+    min-height: 16px;
+    text-align: center;
+    padding: 3px 8px;
+    text-transform: uppercase;
+    color: black;
+}
+
+ul.navbar li a:hover{
+    background-color: #ffffff;
+    color: black;
+}
+
+ul.navbar li.dropdownIcon{
+    display: none;
+}
+
+
+@media screen and (max-width:680px){
+    ul.navbar li:not(:nth-child(1)){
+        display: none;
+    } 
+    
+    ul.navbar li.dropdownIcon{
+        display: block;
+        float: right;
+    }
+
+    ul.navbar li.dropdownIcon{
+        position: absolute;
+        top: 0px;
+        right: 0px;
+    }
+
+
+    ul.navbar.responsive{
+        position: relative;
+    }
+
+    ul.navbar.responsive li{
+        display: inline;
+        float: none;
+    }
+
+    ul.navbar.responsive li a {
+        display: block;
+        text-align: left;
+    }
+    
+}

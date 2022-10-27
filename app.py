@@ -30,7 +30,7 @@ def todo():
 
 @app.route('/')
 def index():
-    return render_template('homepage.html')
+    return render_template('home.html')
 
 
 @app.route('/db')
@@ -51,6 +51,7 @@ def signup():
 @app.route('/signin')
 def signin():
     return render_template('signin.html')
+
 
 @app.route("/add", methods=["POST"])
 def add():
