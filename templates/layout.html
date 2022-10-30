@@ -4,7 +4,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    {% block title %}
     <title>MyApplication</title>
+    {% endblock %}
+    
     <!-- Custom styles for this template -->
     <link href="{{ url_for('static',filename='css/personal.css') }}" rel="stylesheet">
 </head>
@@ -19,13 +23,9 @@
             <li class="dropdownIcon"><a href="javascript:void(0):" onclick="dropdownMenu()">&#9776;</a></li>
         </ul>
     </nav>
-    <li><img src="{{url_for('static',filename='files/logo.png')}}" alt="" width="100%"></li>
-    <div>
-        <h1>Welcome to the webpage :) </h1>
-        <p>the website is still under construction, I appreciate your visit</p>
-        <br>
-        <p>Buy me a coffe so that I keep developing <a href="/paypal">Paypal</a></p>
-    </div> 
+
+    {% block layout %}
+    {% endblock %}
     
     <script>
         function dropdownMenu(){

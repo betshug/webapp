@@ -5,8 +5,18 @@ nav, header, footer {
 body{
     line-height: 2;
     margin: 0px;
+    /* background-image: url('../files/logo.png'); */
+    background-size: cover;
 }
 
+.signup{
+    display: flex;
+    flex-direction: column;
+    margin: 3px 40%;
+
+}
+
+/* #################NAVIGATION BAR#################### */
 nav {
     width: 100%;
     margin: 0px;
@@ -47,7 +57,7 @@ ul.navbar li.dropdownIcon{
     display: none;
 }
 
-
+/* ##################SCREEN QUERY############## */
 @media screen and (max-width:680px){
     ul.navbar li:not(:nth-child(1)){
         display: none;
@@ -64,7 +74,6 @@ ul.navbar li.dropdownIcon{
         right: 0px;
     }
 
-
     ul.navbar.responsive{
         position: relative;
     }
@@ -77,6 +86,10 @@ ul.navbar li.dropdownIcon{
     ul.navbar.responsive li a {
         display: block;
         text-align: left;
+    }
+
+    .signup{
+        margin: 3px 20%;
     }
     
 }

@@ -1,5 +1,10 @@
-{% extends 'base.html' %}
-{% block base %}
+{% extends 'layout.html' %}
+{% block title %}
+<title>To Do Page</title>
+{% endblock %}
+
+
+{% block layout %}
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.css">
 <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.js"></script>
@@ -30,3 +35,6 @@
 <a class="container" href="/db">Download the database</a>
 
 {% endblock %}
+
+
+
