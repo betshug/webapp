@@ -5,7 +5,7 @@
 
 
 {% block layout %}
-
+<div class="signup">
         <form  method="post">
           <div>
             <div>
@@ -50,7 +50,7 @@
             {{ login_form.submit(class='btn btn-primary') }}
         </form>
         <p>Not registered? Go to <a href="/signup">Sign up</a>!</p>
-
+</div>
 <!-- Flash Messages-->
 {% with messages = get_flashed_messages() %}
   {% if messages %}
