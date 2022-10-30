@@ -60,4 +60,4 @@ jobs:
         with:
           app-name: 'mantini'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_B072B5697CED48DC88EBA990CED52814 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_4EF7D9F1264E4E248EAB7E174ED0BCA1 }}
