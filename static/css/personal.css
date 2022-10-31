@@ -9,11 +9,25 @@ body{
     background-size: cover;
 }
 
+.container{
+    margin: auto;
+    padding: 5px 0px;
+    width: 100%;
+}  
+
 .signup{
     display: flex;
     flex-direction: column;
-    align-items: center;
+}
 
+.profilepic{
+    width: 200px;
+    height: 200px;
+    border-radius: 20PX;
+    background-color: none;
+    border-style: solid;
+    border-width: 3px;
+    border-color: deepskyblue;
 }
 
 .row{
@@ -45,6 +59,14 @@ body{
 .foot-align-left{
     text-align: left;
 }
+
+.leftside-col{
+    margin-left: 20%;
+}
+
+
+
+
 
 /* #################CUSTOM STYLES#################### */
 footer.myfooter{
@@ -159,9 +181,6 @@ ul.navbar li.dropdownIcon{
         text-align: left;
     }
 
-    .signup{
-        align-items: center;
-    }
 
     footer.myfooter div.hide{
         display: none;
@@ -171,4 +190,17 @@ ul.navbar li.dropdownIcon{
         width: 50%;
     }
 
+    footer.myfooter div.footright{
+        padding-left: 50%;
+    }  
+
+    .signup{
+        align-items: center;
+    }
+    .col-3{
+        width: 600%;
+    }
+    .leftside-col{
+        margin-left: 0%;
+    }
 }

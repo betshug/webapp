@@ -5,48 +5,60 @@
 
 
 {% block layout %}
+<div class="container">
+   <div class="row">
+      <div class="col-3 leftside-col">
+         <div class="signup">
+            <div class="">
+               <img src="{{ url_for('static',filename='files/user.png') }}" width="100%" alt="">
+            </div>
+         </div>   
+      </div>
+      <div class="col-3">
+         <form  method="post"><!-- I decided to insert the metod post so the sent data wont be displayed in the url after clicking the submit botton. This was the old line<form name="sentMessage" id="contactForm" novalidate>-->
+         <div class="signup">
+                  {{ registerForm.name.label }}
+                  {{ registerForm.name }}
+                  {% for error in registerForm.name.errors %}
+                     {{ error }}
+                  {% endfor %}
 
-<form  method="post"><!-- I decided to insert the metod post so the sent data wont be displayed in the url after clicking the submit botton. This was the old line<form name="sentMessage" id="contactForm" novalidate>-->
-<div class="signup">
-          {{ registerForm.name.label }}
-          {{ registerForm.name }}
-          {% for error in registerForm.name.errors %}
-             {{ error }}
-          {% endfor %}
+                  {{ registerForm.surname.label }}
+                  {{ registerForm.surname }}
+                  {% for error in registerForm.surname.errors %}
+                     {{ error }}
+                  {% endfor %}
 
-          {{ registerForm.surname.label }}
-          {{ registerForm.surname }}
-          {% for error in registerForm.surname.errors %}
-             {{ error }}
-          {% endfor %}
+                  {{ registerForm.email.label }}
+                  {{ registerForm.email }}
+                  {% for error in registerForm.email.errors %}
+                     {{ error }}
+                  {% endfor %}
 
-          {{ registerForm.email.label }}
-          {{ registerForm.email }}
-          {% for error in registerForm.email.errors %}
-             {{ error }}
-          {% endfor %}
+                  {{ registerForm.password.label }}
+                  {{ registerForm.password }}
+                  {% for error in registerForm.password.errors %}
+                     {{ error }}
+                  {% endfor %}
+                  
+                  {{ registerForm.confirm.label }}
+                  {{ registerForm.confirm }}
+                  {% for error in registerForm.confirm.errors %}
+                     {{ error }}
+                  {% endfor %}
 
-          {{ registerForm.password.label }}
-          {{ registerForm.password }}
-          {% for error in registerForm.password.errors %}
-             {{ error }}
-          {% endfor %}
-          
-          {{ registerForm.confirm.label }}
-          {{ registerForm.confirm }}
-          {% for error in registerForm.confirm.errors %}
-             {{ error }}
-          {% endfor %}
+            <!-- For success/fail messages -->
+            {{ registerForm.submit }} <!-- here I kept only the class of the old line which was <button type="submit" class="btn btn-primary" id="sendMessageButton">Send Message</button> -->
+            {{ registerForm.hidden_tag() }}<!-- if you don t put hidden_tag the website won't show the session -->
+         </div>
+         </form>
+      </div>
 
-    <!-- For success/fail messages -->
-    {{ registerForm.submit }} <!-- here I kept only the class of the old line which was <button type="submit" class="btn btn-primary" id="sendMessageButton">Send Message</button> -->
-    {{ registerForm.hidden_tag() }}<!-- if you don t put hidden_tag the website won't show the session -->
+   </div>
 </div>
-</form>
-
-  <h3>List of all registered users</h3>
+<h3>List of all registered users</h3>
 {% for user in user_list %} 
-  <p>{{user.id}} | {{user.name}}</p>
+<p>{{user.id}} | {{user.name}}</p>
 {% endfor %}
 
 <a href="/db">Download the database</a>
