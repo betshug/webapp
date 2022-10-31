@@ -23,7 +23,7 @@ def signup():
         # #session['tel'] = registerForm.tel.data
         password=registerForm.password.data
         password_2 = bcrypt.generate_password_hash(password)
-        new_user=User(username=registerForm.email.data, #username, name, password and role_id are all variales that we are passing to the database
+        new_user=User(username=registerForm.email.data, 
                       name=registerForm.name.data,
                       last_name=registerForm.surname.data,
                     #   phone=registerForm.tel.data,
@@ -33,7 +33,7 @@ def signup():
         db.session.add(new_user)
         db.session.commit()
         #send_mail(registerForm.email.data, 'MagnusPitch Registration','mail', name= registerForm.name.data, username=registerForm.email.data, password=registerForm.password.data)
-        return redirect(url_for('prof'))
+        return redirect(url_for('profile'))
     user_list=User.query.all()    
     return render_template('signup.html', registerForm=registerForm, user_list=user_list)
 
@@ -53,12 +53,12 @@ def login():
                 #session['role_id'] = user_info.role_id
                 #session['age'] = user_info.dateofbirthday
                 #session['position'] = user_info.position
-                return redirect(url_for('prof'))
+                return redirect(url_for('profile'))
             flash('Invalid email or password')
         return render_template('signin.html', login_form=login_form,)
 
-@app.route('/prof')
-def prof():
+@app.route('/profile')
+def profile():
     user=session.get('name')
     return render_template('profile.html', user=user)
 
