@@ -65,8 +65,18 @@ body{
 }
 
 
+/* #################CUSTOM PRODUCTS PAGE#################### */
+.pro-container{
+    background-color: burlywood;
+    margin: 1% 10%;
+}
 
-
+.pro-item{
+    border-style: solid;
+    border-color: gold;
+    background-color: gray;
+    color: gold;
+}
 
 /* #################CUSTOM STYLES#################### */
 footer.myfooter{

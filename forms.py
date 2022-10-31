@@ -1,9 +1,16 @@
 from flask_wtf import FlaskForm
-from wtforms import DateField, SubmitField, StringField, PasswordField, BooleanField, SelectField, SelectMultipleField, widgets, validators
+from wtforms import DateField, SubmitField, IntegerField, FloatField , StringField, PasswordField, BooleanField, SelectField, SelectMultipleField, widgets, validators
 from wtforms.validators import DataRequired, Email, Length, ValidationError, EqualTo, InputRequired
 import datetime
 import email_validator
 
+class Productform(FlaskForm):
+    name = StringField('Name', validators=[DataRequired(), Length(min=3,max=20)] )
+    description = StringField('Description', validators=[DataRequired(), Length(min=3,max=20)] )
+    price = FloatField('Price')
+    quantity = IntegerField('Quantity available')
+    availability = BooleanField('The product is available')
+    submit=SubmitField('Add')
 
 class Signup(FlaskForm):
     name = StringField('Name', validators=[DataRequired(), Length(min=3,max=20)] )

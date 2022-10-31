@@ -13,6 +13,15 @@ class Todo(db.Model):
     complete = db.Column(db.Boolean)
 
 
+class Product(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100))
+    description = db.Column(db.String(300))
+    price = db.Column(db.Float)
+    quantity = db.Column(db.Integer)
+    availability = db.Column(db.Boolean)
+
+
 class User(db.Model):
     id=db.Column(db.Integer,primary_key=True)
     username=db.Column(db.String(50),unique=True,nullable=False)

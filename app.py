@@ -1,14 +1,34 @@
+from traceback import print_exception
 from flask import Flask, render_template, request, redirect, url_for, send_from_directory, flash, session
 from flask_bcrypt import Bcrypt
 import os
 from flask_mail import Mail, Message
 from datetime import datetime, date
-from forms import Signup, Signin
-from model import User, Todo, db, app
+from forms import Productform, Signup, Signin
+from model import User, Product, Todo, db, app
 
 app.config['SECRET_KEY'] = 'sdfhsfhdafsafdweadwesadafnisufncisak68498resf'
 bcrypt=Bcrypt(app)
 
+
+@app.route('/')
+def index():
+    return render_template('homepage.html')
+
+
+@app.route('/products', methods=['POST' , 'GET'])
+def products():
+    form= Productform()
+    if form.validate_on_submit():
+        new_product=Product(name=form.name.data,
+                            description=form.description.data,
+                            price=form.price.data,
+                            quantity=form.quantity.data,
+                            availability=form.availability.data)
+        db.session.add(new_product)
+        db.session.commit()
+    product_list = Product.query.all()                        
+    return render_template('products.html', product_list=product_list, form=form)    
 
 @app.route('/signup', methods=['POST' , 'GET'])
 def signup():
@@ -36,6 +56,8 @@ def signup():
         return redirect(url_for('profile'))
     user_list=User.query.all()    
     return render_template('signup.html', registerForm=registerForm, user_list=user_list)
+
+
 
 @app.route('/signin', methods=['GET', 'POST'])
 def login():
@@ -76,9 +98,6 @@ def todo():
     return render_template('form.html', todo_list=todo_list)
 
 
-@app.route('/')
-def index():
-    return render_template('homepage.html')
 
 
 @app.route('/db')
