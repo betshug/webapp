@@ -1,4 +1,6 @@
+from unicodedata import category
 from flask import Flask
+from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 import datetime
 
@@ -6,6 +8,7 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
+migrate=Migrate(app, db)
 
 class Todo(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -17,6 +20,7 @@ class Product(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100))
     description = db.Column(db.String(300))
+    category = db.Column(db.String(30))
     price = db.Column(db.Float)
     quantity = db.Column(db.Integer)
     availability = db.Column(db.Boolean)

@@ -1,0 +1,7 @@
+Ogni volta che apporto delle modifiche alle colonne del database o inserisco
+una nuova tabella, devo aprire il terminal e 
+
+$ flask db migrate -m "Qui inserire messaggio come quando fai commit per github"
+$ flask db upgrade    
+
+Il comando db upgrade e' spesso chiamato db migrate negli altri framework per database

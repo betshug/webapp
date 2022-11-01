@@ -23,6 +23,21 @@
 
           </div>
         </div>
+
+        <div>
+          <div>
+            {{ form.category.label  }}
+              {{ form.category(class='form-control') }}
+               {% for error in form.category.errors %}
+              <p role="alert">
+
+                {{ error }}
+            </p>
+              {% endfor  %}
+          </div>
+        </div>
+
+
        <div>
           <div>
             {{ form.description.label  }}
@@ -85,6 +100,7 @@
 {% for product in product_list %}
 <div class="pro-item">
     <p>Prodotto:{{product.name}}</p>  
+    <p>Categoria:{{product.category}}</p>  
     <p>Descrizione:{{product.description}} </p>
     <p>Prezzo:{{product.price}}€/pz</p>
     <br>

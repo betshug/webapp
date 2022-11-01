@@ -1,4 +1,5 @@
 from traceback import print_exception
+from unicodedata import category
 from flask import Flask, render_template, request, redirect, url_for, send_from_directory, flash, session
 from flask_bcrypt import Bcrypt
 import os
@@ -22,6 +23,7 @@ def products():
     if form.validate_on_submit():
         new_product=Product(name=form.name.data,
                             description=form.description.data,
+                            category=form.name.data,
                             price=form.price.data,
                             quantity=form.quantity.data,
                             availability=form.availability.data)

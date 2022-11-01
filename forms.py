@@ -7,6 +7,7 @@ import email_validator
 class Productform(FlaskForm):
     name = StringField('Name', validators=[DataRequired(), Length(min=3,max=20)] )
     description = StringField('Description', validators=[DataRequired(), Length(min=3,max=20)] )
+    category = StringField('Category', validators=[DataRequired(), Length(min=3,max=20)] )
     price = FloatField('Price')
     quantity = IntegerField('Quantity available')
     availability = BooleanField('The product is available')
