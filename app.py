@@ -64,7 +64,7 @@ def signup():
 @app.route('/signin', methods=['GET', 'POST'])
 def login():
     if session.get('name'):
-        return redirect(url_for('prof'))
+        return redirect(url_for('profile'))
     else:
         login_form = Signin()
         if login_form.validate_on_submit():
