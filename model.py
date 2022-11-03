@@ -10,6 +10,8 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 migrate=Migrate(app, db)
 
+admin_list=["pruitimarco@hotmail.com","a@q.it", "q@w.e"]
+
 class Todo(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100))
@@ -31,7 +33,7 @@ class User(db.Model):
     username=db.Column(db.String(50),unique=True,nullable=False)
     name=db.Column(db.String(50),nullable=False)
     last_name = db.Column(db.String(50),nullable=False)
-    # position = db.Column(db.String(50), nullable=False)
+    role = db.Column(db.String(50), nullable=False)
     # phone = db.Column(db.String(50), nullable=False)
     # dateofbirthday = db.Column(db.String(50), nullable=False)
     password=db.Column(db.String(200),nullable=False)

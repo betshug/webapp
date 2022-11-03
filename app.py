@@ -6,7 +6,7 @@ import os
 from flask_mail import Mail, Message
 from datetime import datetime, date
 from forms import Productform, Signup, Signin
-from model import User, Product, Todo, db, app
+from model import User, Product, Todo, db, app, admin_list
 
 app.config['SECRET_KEY'] = 'sdfhsfhdafsafdweadwesadafnisufncisak68498resf'
 bcrypt=Bcrypt(app)
@@ -17,48 +17,63 @@ def index():
     return render_template('homepage.html')
 
 
-@app.route('/products', methods=['POST' , 'GET'])
-def products():
-    form= Productform()
-    if form.validate_on_submit():
-        new_product=Product(name=form.name.data,
-                            description=form.description.data,
-                            category=form.name.data,
-                            price=form.price.data,
-                            quantity=form.quantity.data,
-                            availability=form.availability.data)
-        db.session.add(new_product)
-        db.session.commit()
+@app.route('/addproducts', methods=['POST' , 'GET'])
+def addproducts():
+    if session['role'] == 'admin':
+        form= Productform()
+        if form.validate_on_submit():
+            new_product=Product(name=form.name.data,
+                                description=form.description.data,
+                                category=form.name.data,
+                                price=form.price.data,
+                                quantity=form.quantity.data,
+                                availability=form.availability.data)
+            db.session.add(new_product)
+            db.session.commit()
+    else:
+        flash("You don't have the permission to add new items") 
+        return redirect(url_for('products'))       
     product_list = Product.query.all()                        
-    return render_template('products.html', product_list=product_list, form=form)    
+    return render_template('addproducts.html', product_list=product_list, form=form) 
+
+
+@app.route('/products')
+def products():
+    product_list = Product.query.all()
+    return render_template('products.html', product_list=product_list)       
+
 
 @app.route('/signup', methods=['POST' , 'GET'])
 def signup():
     registerForm = Signup() 
     if registerForm.validate_on_submit():
+        if registerForm.email.data in admin_list:
+            user_role='admin'
+        else:
+            user_role='user'
         # #name = registerForm.name.data
         session['name'] = registerForm.name.data
         # session['lastname'] = registerForm.surname.data
         # #session['email'] = registerForm.email.data
         # session['position'] = 'User'
         # session['age'] = registerForm.dob.data
-        # #session['tel'] = registerForm.tel.data
+        session['role'] = user_role
         password=registerForm.password.data
         password_2 = bcrypt.generate_password_hash(password)
         new_user=User(username=registerForm.email.data, 
-                      name=registerForm.name.data,
-                      last_name=registerForm.surname.data,
+                    name=registerForm.name.data,
+                    last_name=registerForm.surname.data,
                     #   phone=registerForm.tel.data,
                     #   dateofbirthday=registerForm.dob.data,
                     #   position='User',
-                      password=password_2)            
+                    role=user_role,
+                    password=password_2)            
         db.session.add(new_user)
         db.session.commit()
         #send_mail(registerForm.email.data, 'MagnusPitch Registration','mail', name= registerForm.name.data, username=registerForm.email.data, password=registerForm.password.data)
         return redirect(url_for('profile'))
     user_list=User.query.all()    
     return render_template('signup.html', registerForm=registerForm, user_list=user_list)
-
 
 
 @app.route('/signin', methods=['GET', 'POST'])
@@ -74,7 +89,7 @@ def login():
                 session['name'] = user_info.name
                 session['lastname'] = user_info.last_name
                 session['email'] = user_info.username
-                #session['role_id'] = user_info.role_id
+                session['role'] = user_info.role
                 #session['age'] = user_info.dateofbirthday
                 #session['position'] = user_info.position
                 return redirect(url_for('profile'))
@@ -98,8 +113,6 @@ def todo():
     todo_list = Todo.query.all()
     print(todo_list)
     return render_template('form.html', todo_list=todo_list)
-
-
 
 
 @app.route('/db')
@@ -129,6 +142,7 @@ def update(todo_id):
     todo.complete = not todo.complete
     db.session.commit()
     return redirect(url_for("todo"))
+
 
 @app.route("/delete/<int:todo_id>")
 def delete(todo_id):

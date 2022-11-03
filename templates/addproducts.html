@@ -1,0 +1,111 @@
+{% extends 'layout.html' %}
+{% block title %}
+<title>Products</title>
+{% endblock %}
+
+
+{% block layout %}
+
+
+<div class="pro-container">
+    <h1>Aggiungi un nuovo prodotto al tuo e-commerce</h1>
+    <form  method="post">
+        <div>
+          <div>
+              {{ form.name.label  }}
+               {{ form.name(class='form-control') }}
+
+            {% for error in form.name.errors %}
+              <div role="alert">
+
+                {{ error }}
+              </div>
+              {% endfor  %}
+
+          </div>
+        </div>
+
+        <div>
+          <div>
+            {{ form.category.label  }}
+              {{ form.category(class='form-control') }}
+               {% for error in form.category.errors %}
+              <p role="alert">
+
+                {{ error }}
+            </p>
+              {% endfor  %}
+          </div>
+        </div>
+
+
+       <div>
+          <div>
+            {{ form.description.label  }}
+              {{ form.description(class='form-control') }}
+               {% for error in form.description.errors %}
+              <p role="alert">
+
+                {{ error }}
+            </p>
+              {% endfor  %}
+          </div>
+        </div>
+        <div>
+            <div>
+              {{ form.price.label  }}
+                {{ form.price(class='form-control') }}
+                 {% for error in form.price.errors %}
+                <p role="alert">
+  
+                  {{ error }}
+              </p>
+                {% endfor  %}
+            </div>
+        </div>
+        
+        <div>
+            <div>
+              {{ form.quantity.label  }}
+                {{ form.quantity(class='form-control') }}
+                 {% for error in form.quantity.errors %}
+                <p role="alert">
+  
+                  {{ error }}
+              </p>
+                {% endfor  %}
+            </div>
+        </div>
+
+
+        <div>
+          <div>
+            {{ form.availability.label  }}
+              {{ form.availability(class='form-control') }}
+               {% for error in form.availability.errors %}
+              <p role="alert">
+
+                {{ error }}
+            </p>
+              {% endfor  %}
+          </div>
+        </div>
+       <!-- For success/fail messages -->
+      {{ form.hidden_tag() }}
+          {{ form.submit(class='btn btn-primary') }}
+      </form>
+
+</div>
+
+<h1>Lista dei prodotti disponibili</h1>
+{% for product in product_list %}
+<div class="pro-item">
+    <p>Prodotto:{{product.name}}</p>  
+    <p>Categoria:{{product.category}}</p>  
+    <p>Descrizione:{{product.description}} </p>
+    <p>Prezzo:{{product.price}}€/pz</p>
+    <br>
+</div>
+{% endfor %}
+{% endblock %}
+
