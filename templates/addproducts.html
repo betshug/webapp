@@ -9,7 +9,7 @@
 
 <div class="pro-container">
     <h1>Aggiungi un nuovo prodotto al tuo e-commerce</h1>
-    <form  method="post">
+    <form  method="post" enctype="multipart/form-data">
         <div>
           <div>
               {{ form.name.label  }}
@@ -80,6 +80,19 @@
 
         <div>
           <div>
+            {{ form.prod_picture.label  }}
+              {{ form.prod_picture(class='form-control') }}
+               {% for error in form.prod_picture.errors %}
+              <p role="alert">
+
+                {{ error }}
+            </p>
+              {% endfor  %}
+          </div>
+        </div>
+
+        <div>
+          <div>
             {{ form.availability.label  }}
               {{ form.availability(class='form-control') }}
                {% for error in form.availability.errors %}
@@ -104,6 +117,7 @@
     <p>Categoria:{{product.category}}</p>  
     <p>Descrizione:{{product.description}} </p>
     <p>Prezzo:{{product.price}}€/pz</p>
+    <p><img src="{{product.img_path}}" alt="image not"></p>
     <br>
 </div>
 {% endfor %}

@@ -1,3 +1,4 @@
+from enum import unique
 from unicodedata import category
 from flask import Flask
 from flask_migrate import Migrate
@@ -10,7 +11,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 migrate=Migrate(app, db)
 
-admin_list=["pruitimarco@hotmail.com","a@q.it", "q@w.e"]
+admin_list=["pruitimarco@hotmail.com","a@q.it", "q@w.e","z@o.it", "mar@co.it"]
 
 class Todo(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -26,7 +27,7 @@ class Product(db.Model):
     price = db.Column(db.Float)
     quantity = db.Column(db.Integer)
     availability = db.Column(db.Boolean)
-
+    img_path = db.Column(db.String(100))
 
 class User(db.Model):
     id=db.Column(db.Integer,primary_key=True)

@@ -1,4 +1,5 @@
 from flask_wtf import FlaskForm
+from flask_wtf.file import FileField
 from wtforms import DateField, SubmitField, IntegerField, FloatField , StringField, PasswordField, BooleanField, SelectField, SelectMultipleField, widgets, validators
 from wtforms.validators import DataRequired, Email, Length, ValidationError, EqualTo, InputRequired
 import datetime
@@ -11,6 +12,7 @@ class Productform(FlaskForm):
     price = FloatField('Price')
     quantity = IntegerField('Quantity available')
     availability = BooleanField('The product is available')
+    prod_picture = FileField('Add a picture')
     submit=SubmitField('Add')
 
 class Signup(FlaskForm):

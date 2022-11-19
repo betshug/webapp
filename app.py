@@ -1,12 +1,14 @@
+from fileinput import filename
 from traceback import print_exception
 from unicodedata import category
 from flask import Flask, render_template, request, redirect, url_for, send_from_directory, flash, session
 from flask_bcrypt import Bcrypt
-import os
+from werkzeug.utils import secure_filename
 from flask_mail import Mail, Message
 from datetime import datetime, date
 from forms import Productform, Signup, Signin
-from model import User, Product, Todo, db, app, admin_list
+from model import User, Product, Todo, db, app, admin_list 
+import os
 
 app.config['SECRET_KEY'] = 'sdfhsfhdafsafdweadwesadafnisufncisak68498resf'
 bcrypt=Bcrypt(app)
@@ -19,22 +21,33 @@ def index():
 
 @app.route('/addproducts', methods=['POST' , 'GET'])
 def addproducts():
-    if session['role'] == 'admin':
+    # if session['role'] == 'admin':
         form= Productform()
         if form.validate_on_submit():
+            pic = request.files["prod_picture"]
+            filename = secure_filename(pic.filename)
+
+            new_filename = filename
+            save_location = os.path.join('static/files', new_filename)
+            pic.save(save_location)
+
+
+
             new_product=Product(name=form.name.data,
                                 description=form.description.data,
                                 category=form.name.data,
                                 price=form.price.data,
                                 quantity=form.quantity.data,
-                                availability=form.availability.data)
+                                availability=form.availability.data,
+                                img_path="static/files/" + filename
+                                )
             db.session.add(new_product)
             db.session.commit()
-    else:
-        flash("You don't have the permission to add new items") 
-        return redirect(url_for('products'))       
-    product_list = Product.query.all()                        
-    return render_template('addproducts.html', product_list=product_list, form=form) 
+    # else:
+    #     flash("You don't have the permission to add new items") 
+    #     return redirect(url_for('products'))       
+        product_list = Product.query.all()                        
+        return render_template('addproducts.html', product_list=product_list, form=form) 
 
 
 @app.route('/products')
@@ -133,7 +146,6 @@ def add():
     db.session.add(new_todo)
     db.session.commit()
     return redirect(url_for("todo"))
-
 
 @app.route("/update/<int:todo_id>")
 def update(todo_id):
