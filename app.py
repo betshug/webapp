@@ -47,7 +47,14 @@ def addproducts():
     #     flash("You don't have the permission to add new items") 
     #     return redirect(url_for('products'))       
         product_list = Product.query.all()                        
-        return render_template('addproducts.html', product_list=product_list, form=form) 
+        return render_template('addproducts.html', product_list=product_list, form=form)
+
+@app.route('/deleteproduct/<int:id>')
+def deleteproducts(id):
+    delete=Product.query.filter_by(id=id).first()
+    db.session.delete(delete)
+    db.session.commit()
+    return redirect(url_for("addproducts"))        
 
 
 @app.route('/products')

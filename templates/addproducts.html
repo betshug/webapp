@@ -111,15 +111,22 @@
 </div>
 
 <h1>Lista dei prodotti disponibili</h1>
-{% for product in product_list %}
-<div class="pro-item">
-    <p>Prodotto:{{product.name}}</p>  
-    <p>Categoria:{{product.category}}</p>  
-    <p>Descrizione:{{product.description}} </p>
-    <p>Prezzo:{{product.price}}€/pz</p>
-    <p><img src="{{product.img_path}}" alt="image not"></p>
-    <br>
-</div>
-{% endfor %}
+<div class="pro-container"> 
+  {% for product in product_list %}  
+  <div class="col-6">
+    <div class="pro-item">
+      <h1>{{product.name}}</h1>
+      <img src="{{product.img_path}}" alt="image not" width="200px" height="200px">
+      <h2>{{product.description}}</h2>
+      <h3>{{product.price}} €</h3>
+      <form>
+        <button class="button-red" type="submit" formaction="/deleteproduct/{{product.id}}">Delete</button>
+        <button class="button-green" type="submit" formaction="/upgradeproduct/{{product.id}}">Upgrade</button>
+     </form>
+    </div>
+  </div>  
+  {% endfor %} 
+</div>   
+
 {% endblock %}
 
