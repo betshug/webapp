@@ -16,7 +16,8 @@ bcrypt=Bcrypt(app)
 
 @app.route('/')
 def index():
-    return render_template('products.html')
+    product_list = Product.query.all()
+    return render_template('products.html', product_list=product_list)
 
 
 @app.route('/addproducts', methods=['POST' , 'GET'])
