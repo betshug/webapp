@@ -16,7 +16,7 @@ bcrypt=Bcrypt(app)
 
 @app.route('/')
 def index():
-    return render_template('homepage.html')
+    return render_template('products.html')
 
 
 @app.route('/addproducts', methods=['POST' , 'GET'])
@@ -26,13 +26,9 @@ def addproducts():
         if form.validate_on_submit():
             pic = request.files["prod_picture"]
             filename = secure_filename(pic.filename)
-
             new_filename = filename
             save_location = os.path.join('static/files', new_filename)
             pic.save(save_location)
-
-
-
             new_product=Product(name=form.name.data,
                                 description=form.description.data,
                                 category=form.name.data,
